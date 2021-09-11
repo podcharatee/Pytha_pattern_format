@@ -107,7 +107,7 @@ def reverse_pattern_from_excel(input_file, saveloc, filename):
         if sheet != 1:
             temp=temp[1:]
         temp_str = temp.to_csv(header=False, index=False, line_terminator='\n', sep='\n')
-        data_array.append(temp_str)
+        data_array.append(temp_str+'\n')
 
         sheet += 1
 
@@ -123,7 +123,6 @@ def reverse_pattern_from_excel(input_file, saveloc, filename):
             reversed_file.write(line)        
         for line in data_array:
             reversed_file.write(line[:-1])
-        reversed_file.write("\n")
         for line in last_line_list:
             reversed_file.write(line)
         reversed_file.write("\n")
