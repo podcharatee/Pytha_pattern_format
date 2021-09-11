@@ -1,0 +1,79 @@
+Sub Macro1before()
+Dim headerline As Long
+Dim i As Long
+Dim j As Long
+Dim last_i As Long
+Dim LastRow As Long
+Dim Firstline As Long
+Dim Lastline As Long
+Application.ScreenUpdating = False
+
+headerline = 4
+i = 1
+    With ActiveSheet
+        LastRow = .Cells(.Rows.Count, "A").End(xlUp).Row
+    End With
+last_i = Int(Application.WorksheetFunction.RoundDown(LastRow / 201, 0))
+
+For i = 1 To last_i
+Firstline = (i - 1) * 201 + headerline + 1
+Lastline = (i) * 201 + headerline
+    For j = 1 To 201
+    Cells(Firstline, j) = Cells(Firstline + j - 1, 1)
+    Next j
+Next i
+
+pivot = headerline + 1
+
+For i = 1 To last_i
+
+    For j = 1 To 200
+    Rows(pivot + 1).EntireRow.Delete
+    Next j
+pivot = pivot + 1
+
+Next i
+
+Application.ScreenUpdating = True
+Cells(1, 2) = last_i
+End Sub
+
+Sub Macro2after()
+Dim headerline As Long
+Dim i As Long
+Dim j As Long
+Dim last_i As Long
+Dim LastRow As Long
+Dim Firstline As Long
+Dim Lastline As Long
+'Application.ScreenUpdating = False
+
+headerline = 4
+i = 1
+last_i = Cells(1, 2).Value
+
+pivot = headerline + 1
+
+For i = 1 To last_i
+    For j = 1 To 200
+    Rows(pivot + 1).EntireRow.Insert
+    pivot = pivot + 1
+    Next j
+pivot = pivot + 1
+Next i
+
+For i = 1 To last_i
+Firstline = (i - 1) * 201 + headerline + 1
+Lastline = (i) * 201 + headerline
+    For j = 1 To 201
+    Cells(Firstline + j - 1, 1) = Cells(Firstline, j)
+    Next j
+Next i
+
+For j = 1 To 200
+    Columns(2).EntireColumn.Delete
+Next j
+
+Application.ScreenUpdating = True
+
+End Sub
