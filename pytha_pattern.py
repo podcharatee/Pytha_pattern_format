@@ -118,7 +118,7 @@ def reverse_pattern_from_excel(input_file, saveloc, filename):
         for line in last_line_file:
             last_line_list.append(line)
 
-    with open(saveloc+"\\"+filename.replace("_Covereted","")[:-5]+"_Reversed.txt", 'w') as reversed_file:
+    with open(saveloc+"\\"+filename.replace("_Covereted","")[:-5]+".txt", 'w') as reversed_file:
         for line in header_list:
             reversed_file.write(line)        
         for line in data_array:
