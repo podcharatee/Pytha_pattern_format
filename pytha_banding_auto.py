@@ -40,15 +40,12 @@ def forward_convert(fullpathxlsx, saveloc, filename):
     tree = ET.parse(f)
     root = tree.getroot()
     for rule_set in root:
-        # print(rule_set.tag.split("}")[1],rule_set.attrib)
         sheetname.append(rule_set.attrib['name']+' protected='+rule_set.attrib['protected'])
         
         rule_set_df = pd.DataFrame(columns=rule_set_col_name)
-        # print(rule_set_df)
 
 
         for rule in rule_set:
-            # print(rule.tag.split("}")[1],rule.attrib)
             part_name = rule.attrib['part-name']
             construction_type = rule.attrib['construction-type']
             header_dict = {'part-name':part_name, 'construction-type':construction_type}
@@ -72,7 +69,6 @@ def forward_convert(fullpathxlsx, saveloc, filename):
             }
 
             for side in rule:
-                # print(side.tag.split("}")[1],side.attrib['raw'],side.text)
                 side_name = side.tag.split("}")[1]
                 side_raw = side.attrib['raw']
                 side_edge = side.text
@@ -81,7 +77,6 @@ def forward_convert(fullpathxlsx, saveloc, filename):
                 raw_dict['raw-' + side_name.split("-")[1]]
 
             final_dict = {**header_dict, **edge_dict, **raw_dict}
-            # print(final_dict)
             rule_set_df = rule_set_df.append(final_dict, ignore_index=True)
             
         dataframe_list.append(rule_set_df)
@@ -138,17 +133,14 @@ All quotation marks "" and beak brackets <> are required.
 
 
     for df_key in df_dict.keys():
-        # print(df_key)
         [name,protected] = df_key.split(' protected=')
         rule_set = ET.SubElement(root, "rule-set", name=name, protected=protected)
         for _,rule_row in df_dict[df_key].fillna(value="").iterrows():
             rule = ET.SubElement(rule_set, "rule",attrib = {'construction-type':rule_row['construction-type'], 'part-name':rule_row['part-name']} )
             for side_name in ['band-front','band-back','band-left','band-right','band-top','band-bottom']:
                 if rule_row[side_name] != 'False' : ET.SubElement(rule, side_name, raw=rule_row['raw-'+side_name.split('-')[1]]).text = rule_row[side_name]
-        # xml_text = xml_text + ET.tostring(root).decode("utf-8")
         
         pass
-    # print(ET.tostring(root,short_empty_elements=False))
     xml_text = xml_text + parseString(ET.tostring(root,short_empty_elements=False).decode("utf-8")).childNodes[0].toprettyxml(indent="  ")
     file1 = open(saveloc+"\\"+filename.replace("_Converted","")[:-5]+".txt", 'w')
     file1.write(xml_text)
