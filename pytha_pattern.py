@@ -34,8 +34,8 @@ def convert_pattern(input_file, saveloc, filename):
 
     #print(kk_header_list)
 
-    print(saveloc+filename[:-4]+"_Covereted.txt")
-    with open(saveloc+"\\"+filename[:-4]+"_Covereted.txt", 'w') as file_converted:
+    print(saveloc+filename[:-4]+"_Converted.txt")
+    with open(saveloc+"\\"+filename[:-4]+"_Converted.txt", 'w') as file_converted:
         # for line in header_array:
         #     file_converted.write(line)
         for line in kk_header_list:
@@ -84,7 +84,7 @@ def reverse_pattern(input_file, saveloc, filename):
         for line in last_line_file:
             last_line_list.append(line)
 
-    with open(saveloc+"\\"+filename.replace("_Covereted","")[:-4]+"_Reversed.txt", 'w') as reversed_file:
+    with open(saveloc+"\\"+filename.replace("_Converted","")[:-4]+"_Reversed.txt", 'w') as reversed_file:
         for line in header_list:
             reversed_file.write(line)        
         for line in data_array:
@@ -118,7 +118,7 @@ def reverse_pattern_from_excel(input_file, saveloc, filename):
         for line in last_line_file:
             last_line_list.append(line)
 
-    with open(saveloc+"\\"+filename.replace("_Covereted","")[:-5]+".txt", 'w') as reversed_file:
+    with open(saveloc+"\\"+filename.replace("_Converted","")[:-5]+".txt", 'w') as reversed_file:
         for line in header_list:
             reversed_file.write(line)        
         for line in data_array:
