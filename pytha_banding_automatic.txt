@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Brief explanation of the structure of this file
+
+The line
+  <banding-automatic xmlns="...">
+must not be changed and identifies the file as an automatic edging file.
+
+This can contain several automatic glueing devices. Every automatic edge banding system is a text block:
+  <rule-set name="Musterautomatik" protected="0">
+     ...
+  </rule-set>
+Each automatic edge banding system can contain several banding rules.
+
+There is a text block for each edge banding rule:
+  <rule part-name="Mustername" construction-type="Mustertyp">
+     ...
+  </rule>
+This edge banding rule is applied to components that have the name pattern name and the construction type pattern type.
+
+Each edging rule can set the following edging:
+  <band-front raw="0">Musteranleimer vorne</band-front>
+  <band-back raw="0">Musteranleimer hinten</band-back>
+  <band-left raw="0">Musteranleimer links</band-left>
+  <band-right raw="0">Musteranleimer rechts</band-right>s
+  <band-top raw="0">Musteranleimer oben</band-top>
+  <band-bottom raw="0">Musteranleimer unten</band-bottom>
+Sample edging is a text: material, thickness in mm
+and raw = "0" or raw = "1" specifies whether or not to cut dimensions.
+
+All quotation marks "" and beak brackets <> are required.
+-->
+<banding-automatic xmlns="http://xmlns.pytha.com/banding-automatic/1.0">
+  <rule-set name="VI-Sliding wardrobe" protected="0">
+    <rule construction-type="" part-name="Side LH">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thin, 0.5</band-back>
+      <band-top raw="0">Thin, 0.5</band-top>
+    </rule>
+    <rule construction-type="" part-name="Side RH">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thin, 0.5</band-back>
+      <band-top raw="0">Thin, 0.5</band-top>
+    </rule>
+    <rule construction-type="" part-name="Top">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thin, 0.5</band-back>
+      <band-left raw="0">Thin, 0.5</band-left>
+      <band-right raw="0">Thin, 0.5</band-right>
+    </rule>
+    <rule construction-type="" part-name="Bottom">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thin, 0.5</band-back>
+      <band-left raw="0">Thin, 0.5</band-left>
+      <band-right raw="0">Thin, 0.5</band-right>
+    </rule>
+    <rule construction-type="" part-name="LED hide">
+      <band-left raw="0">Thick, 1.1</band-left>
+      <band-right raw="0">Thick, 1.1</band-right>
+      <band-top raw="0">Thick, 1.1</band-top>
+      <band-bottom raw="0">Thick, 1.1</band-bottom>
+    </rule>
+    <rule construction-type="" part-name="Tightback"/>
+  </rule-set>
+  <rule-set name="Pside_P_LM" protected="0">
+    <rule construction-type="" part-name="Pside">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-top raw="0">Thick, 1.1</band-top>
+      <band-bottom raw="0">Thick, 1.1</band-bottom>
+    </rule>
+    <rule construction-type="" part-name="UPside">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-top raw="0">Thick, 1.1</band-top>
+    </rule>
+    <rule construction-type="" part-name="TPside">
+      <band-front raw="0">Thick, 1.1</band-front>
+    </rule>
+    <rule construction-type="" part-name="ISPside">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thick, 1.1</band-back>
+      <band-top raw="0">Thick, 1.1</band-top>
+    </rule>
+    <rule construction-type="" part-name="Pbottom">
+      <band-front raw="0">Thick, 1.1</band-front>
+    </rule>
+    <rule construction-type="" part-name="Fame">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thin, 0.5</band-back>
+    </rule>
+    <rule construction-type="" part-name="Rack">
+      <band-front raw="0">Thick, 1.1</band-front>
+      <band-back raw="0">Thick, 1.1</band-back>
+    </rule>
+  </rule-set>
+</banding-automatic>
